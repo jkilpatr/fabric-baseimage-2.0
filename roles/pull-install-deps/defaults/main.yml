@@ -1,0 +1,24 @@
+# Order all shared packages up top, platform dependent
+# packages go at the bottom in no particular order.
+# List ALL packages including ones installed by default
+ubuntu_deps_cmd: "apt-get update; \
+                  apt-get install -y \
+                  wget \
+                  curl \
+                  sudo \
+                  make \
+                  autoconf \
+                  automake \
+                  gcc-c++ \
+                  netcat-openbsd \
+                  openjdk-8-jdk"
+centos_deps_cmd: "yum install -y \
+                  wget \
+                  curl \
+                  sudo \
+                  make \
+                  autoconf \
+                  automake \
+                  gcc-c++ \
+                  netcat-openbsd \
+                  java-1.8.0-openjdk"

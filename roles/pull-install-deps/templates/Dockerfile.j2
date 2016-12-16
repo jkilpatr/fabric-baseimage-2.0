@@ -1,0 +1,5 @@
+FROM {{ distro }}
+RUN {{ deps_cmd }}
+ENV GOPATH=/opt/gopath
+ENV GOROOT=/opt/go
+ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin

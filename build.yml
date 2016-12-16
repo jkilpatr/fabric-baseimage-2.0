@@ -1,0 +1,7 @@
+---
+# Playbook to build Fabric baseimage for arbitrary distributions
+
+- hosts: localhost
+  roles:
+   - pull-install-deps
+   - install-golang
