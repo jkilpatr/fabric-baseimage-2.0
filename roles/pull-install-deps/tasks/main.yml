@@ -25,5 +25,5 @@
 - name: "Build {{ distro }} docker image with dependencies"
   docker_image:
     path: /tmp/fabric-baseimage/
-    name: pull-install-deps
+    name: fabric-baseimage-in-progress
     state: present
