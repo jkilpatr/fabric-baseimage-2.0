@@ -1,0 +1,13 @@
+# list ALL packages, including ones installed by default
+dependencies:
+  - wget
+  - curl
+  - sudo
+  - make
+  - autoconf
+  - automake
+  - gcc-c++
+  - nc
+  - java-1.8.0-openjdk
+  - golang
+go_bootstrap: "/usr/lib/golang"

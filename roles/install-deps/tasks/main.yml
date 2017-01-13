@@ -1,0 +1,11 @@
+---
+- name: Grab OS specific package lists
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "group_vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+    - "group_vars/{{ ansible_distribution }}.yml"
+
+- name: Install Packages
+  package: "name={{ item }} state=latest"
+  with_flattened:
+    - "{{ dependencies }}"

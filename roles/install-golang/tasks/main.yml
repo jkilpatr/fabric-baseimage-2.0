@@ -1,0 +1,29 @@
+---
+# Builds the correct version of GO from source, we already installed golang
+# in the deps role, but we need very specific versions, so we just use it for
+# bootstrapping
+
+- name: Create GO root
+  file:
+    path: "{{ goroot }}"
+    state: directory
+
+- name: Download GO
+  get_url:
+    url: "{{ golink }}"
+    dest: "{{ goroot }}"
+
+- name: Extract GO
+  unarchive:
+    src: "{{ goroot }}/{{ golink  | basename }}"
+    dest: "{{ goroot }}"
+
+- name: Build GO
+  shell: "cd {{goroot}}/go/src; ./make.bash"
+  environment:
+    GOROOT: "{{ goroot }}"
+    GOPATH: "{{ gopath }}"
+    GOROOT_BOOTSTRAP: "{{ go_bootstrap }}"
+
+
+

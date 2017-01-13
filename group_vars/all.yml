@@ -1,9 +1,9 @@
-# Distribution to base your fabric-baseimage on
-distro: centos
-
 # List of supported platforms, not currently used
 # except for human reference
 supported_distros:
   - ubuntu
   - centos
+
+
+
 

@@ -1,0 +1,45 @@
+- name: "Create docker build directory"
+  file:
+    path: "/tmp/fabric-baseimage-{{ item.name }}"
+    state: directory
+  with_items: "{{ distros }}"
+
+- name: "Template Dockerfile"
+  template:
+    src: Dockerfile.j2
+    dest: "/tmp/fabric-baseimage-{{ item.name }}/Dockerfile"
+  with_items: "{{ distros }}"
+
+- name: "Copy playbook into container build dir"
+  synchronize:
+    src: "{{ playbook_dir }}"
+    dest: "/tmp/fabric-baseimage-{{ item.name }}"
+  with_items: "{{ distros }}"
+
+- name: "Clean up old docker images"
+  docker_image:
+    path: "/tmp/fabric-baseimage-{{ item.name }}/"
+    name: fabric-baseimage
+    state: absent
+  with_items: "{{ distros }}"
+
+- name: "Clean intermediate images"
+  shell: "docker rm -v $(docker ps -a -q -f status=exited)"
+  ignore_errors: True
+
+- name: "Kick off Docker builds in parallel"
+  docker_image:
+    path: "/tmp/fabric-baseimage-{{ item.name }}/"
+    name: fabric-baseimage
+    state: present
+  with_items: "{{ distros }}"
+  register: image_building_jobs
+  async: 10000
+  poll: 0
+
+- name: "Wait for builds to finish"
+  async_status: "jid={{ item.ansible_job_id }}"
+  register: image_build
+  until: image_build.finished
+  retries: 500
+  with_items: "{{ image_building_jobs.results }}"

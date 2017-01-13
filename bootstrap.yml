@@ -1,0 +1,7 @@
+---
+#Playbook to bootstrap the buld process
+
+- hosts: localhost
+  connection: local
+  roles:
+   - bootstrap

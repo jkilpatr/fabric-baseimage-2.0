@@ -1,0 +1,9 @@
+FROM {{ item.name }}
+{% for line in item.bootstrap %}
+RUN {{ line }}
+{% endfor %}
+COPY fabric-baseimage-2.0 /hyperldeger/baseimage/scripts
+RUN cd /hyperldeger/baseimage/scripts; ansible-playbook -i hosts build.yml -vv
+ENV GOPATH=/opt/gopath
+ENV GOROOT=/opt/go
+ENV PATH=$PATH:$GOROOT/bin:$GOPATH/bin
