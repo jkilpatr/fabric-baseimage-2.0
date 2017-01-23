@@ -9,7 +9,7 @@ This script can use the same codepath to build Fabric on arbitrary architectures
 and distributions using only a single config file per distro/arch to handle
 the details.
 
-`bootstrap.py` templates out dockerfiles for every supported distribution, found
+`bootstrap.yml` templates out dockerfiles for every supported distribution, found
 with simple bootstrapping scripts in `roles/bootstrap/defaults/main.yml` these
 dockerfiles then bootstrap installing ansible and copy in this script folder.
 This is done in parallel for all supported distributions, which then run the build
