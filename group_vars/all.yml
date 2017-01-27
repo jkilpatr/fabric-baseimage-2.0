@@ -1,5 +1,11 @@
 # List of supported platforms, not currently used
-# except for human reference
+# except for human reference, possible formats the
+# most specific is selected first with priority to
+# arch.
+# disto
+# distro-arch
+# distro-version
+# distro-version-arch
 supported_distros:
   - ubuntu
   - centos

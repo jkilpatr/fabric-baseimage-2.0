@@ -10,4 +10,15 @@ dependencies:
   - netcat-openbsd
   - openjdk-8-jdk
   - golang
+  - unzip
+  - autogen
+  - autoconf
+  - libtool
 go_bootstrap: "/usr/lib/go-1.6"
+
+# Toggles to include custom roles
+# for various packages based on architecture
+arch_dep_golang: false
+arch_dep_java: false
+arch_dep_node: false
+arch_dep_protobuf: false
