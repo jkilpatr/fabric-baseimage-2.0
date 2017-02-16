@@ -19,8 +19,9 @@ The build playbook uses ansible facts to determine which config file to pull
 from `group_vars` either distro-version-arch, distro-arch, distro-version, and
 finally just disto, selected in that order depending on which matches first.
 
-Right now we just build go and install package dependencies (using converged code
-to actually do both) next up is protobuff stuff.
+Right now we build and install all the major requirements for Hyperledger, currently
+WIP is a testing role to validate that the documented Fabric development workflow
+runs correctly on each built container.
 
 ### To Run
 
