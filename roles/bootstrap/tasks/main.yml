@@ -27,11 +27,16 @@
   shell: "docker rm -v $(docker ps -a -q -f status=exited)"
   ignore_errors: True
 
+- name: "Clean intermediate images"
+  shell: "docker rmi $(docker images -f 'dangling=true' -q)"
+  ignore_errors: True
+
 - name: "Kick off Docker builds in parallel"
   docker_image:
     path: "/tmp/fabric-baseimage-{{ item.name }}/"
     name: fabric-baseimage
     state: present
+    repository: "localhost:5000/fabric-baseimage-{{ item.name }}"
   with_items: "{{ distros }}"
   register: image_building_jobs
   async: 10000
@@ -43,3 +48,6 @@
   until: image_build.finished
   retries: 500
   with_items: "{{ image_building_jobs.results }}"
+
+
+

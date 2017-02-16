@@ -1,0 +1,25 @@
+---
+
+- name: Download Protobuf
+  get_url:
+    url: "{{ protobuf_url }}"
+    dest: "{{ ansible_env.HOME }}"
+
+- name: Extract Protobuff
+  unarchive:
+    src: "{{ ansible_env.HOME }}/protobuf-{{ protobuf_version }}.tar.gz"
+    dest: "{{ ansible_env.HOME }}"
+
+- name: Build Protobuff
+  shell: "cd {{ ansible_env.HOME }}/protobuf-{{ protobuf_version }} && \
+          ./autogen.sh && \
+          ./configure --prefix=/usr && \
+          make && \
+          make check &&
+          make install &&
+          export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH"
+
+
+
+
+

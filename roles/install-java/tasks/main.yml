@@ -1,0 +1,6 @@
+---
+
+- name: Run architecture specific build
+  include: "{{ ansible_distribution }}-{{ ansilbe_architecture }}.yml"
+  when: "{{ arch_dep_java }}"
+

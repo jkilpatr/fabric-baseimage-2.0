@@ -1,0 +1,20 @@
+---
+# Task to validate docker images by building Fabric with them
+
+
+- name: "Create Fabric working Dir"
+  file:
+    path: "{{ validation_folder }}"
+    state: directory
+
+- name: "Download Fabric Quickstart Files"
+  get_url:
+    url: "{{ validation_file }}"
+    dest: "{{ validation_folder }}"
+
+- name: "Extract Fabric Quickstart Files"
+  unarchive:
+    src: "{{ validation_folder }}/{{ validation_file | basename}}"
+    dest: "{{ validation_folder }}"
+
+

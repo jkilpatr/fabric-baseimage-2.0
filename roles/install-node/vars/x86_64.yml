@@ -1,0 +1,2 @@
+node_package: "node-v{{node_version}}-linux-x64.tar.gz"
+node_url: "https://nodejs.org/dist/v{{ node_version }}/{{ node_package }}"

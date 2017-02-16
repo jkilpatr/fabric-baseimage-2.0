@@ -1,0 +1,2 @@
+validation_folder: "/tmp/fabric-baseimage-validate/"
+validation_file: "https://raw.githubusercontent.com/hyperledger/fabric/master/examples/sfhackfest/sfhackfest.tar.gz" 

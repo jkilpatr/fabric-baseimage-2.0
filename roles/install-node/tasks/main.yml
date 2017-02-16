@@ -1,0 +1,15 @@
+---
+
+# Required because nodejs uses nonstandard arch designations
+# vars/formal-arch-name.yml essentially just hardcodes whatever
+# shorthand they decided to use.
+- name: Load architecture specific url
+  include_vars: "vars/{{ ansible_architecture }}.yml"
+
+- name: Run architecture specific build
+  include: "{{ ansible_distribution }}-{{ ansilbe_architecture }}.yml"
+  when: "{{ arch_dep_node }}"
+
+- name: Run general build
+  include: general.yml
+  when: "not {{ arch_dep_node }}"

@@ -1,0 +1,11 @@
+---
+
+- name: Download Node
+  get_url:
+    url: "{{ node_url }}"
+    dest: "{{ ansible_env.HOME }}"
+
+- name: Extract Node
+  unarchive:
+    src: "{{ ansible_env.HOME }}/{{ node_url | basename }}"
+    dest: "/usr/local/"

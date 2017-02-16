@@ -1,0 +1,3 @@
+node_version: "6.7.0"
+node_package: "node-v{{node_version}}-linux-{{ ansible_architecture }}.tar.gz"
+node_url: "https://nodejs.org/dist/v{{ node_version }}/{{ node_package }}"
