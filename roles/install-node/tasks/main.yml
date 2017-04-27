@@ -8,8 +8,8 @@
 
 - name: Run architecture specific build
   include: "{{ ansible_distribution }}-{{ ansilbe_architecture }}.yml"
-  when: "{{ arch_dep_node }}"
+  when: arch_dep_node
 
 - name: Run general build
   include: general.yml
-  when: "not {{ arch_dep_node }}"
+  when: not arch_dep_node

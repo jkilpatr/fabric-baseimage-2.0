@@ -1,5 +1,7 @@
 # list ALL packages, including ones installed by default
 dependencies:
+  - which
+  - git
   - wget
   - curl
   - sudo
@@ -14,6 +16,7 @@ dependencies:
   - autogen
   - autoconf
   - libtool
+  - libtool-ltdl-devel
 go_bootstrap: "/usr/lib/golang"
 
 # Toggles to include custom roles

@@ -11,6 +11,4 @@ distros:
   - name: debian
     bootstrap:
       - "apt-get update"
-      - "apt-get install -y python-pip python-dev gcc openssl-dev"
-      - "pip install --upgrade pip"
-      - "pip install ansible"
+      - "apt-get install -y ansible"

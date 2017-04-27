@@ -1,20 +1,30 @@
 ---
 # Task to validate docker images by building Fabric with them
 
+- name: "Download Fabric repo"
+  shell: "go get github.com/hyperledger/fabric"
+  environment:
+         GOPATH: "{{gopath}}"
+         GOROOT: "{{goroot}}"
+  ignore_errors: true
 
-- name: "Create Fabric working Dir"
-  file:
-    path: "{{ validation_folder }}"
-    state: directory
+- name: "Make Peer"
+  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/peer; go build"
+  environment:
+         GOPATH: "{{gopath}}"
+         GOROOT: "{{goroot}}"
 
-- name: "Download Fabric Quickstart Files"
-  get_url:
-    url: "{{ validation_file }}"
-    dest: "{{ validation_folder }}"
+- name: "Make Orderer"
+  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/peer; go build"
+  environment:
+         GOPATH: "{{gopath}}"
+         GOROOT: "{{goroot}}"
 
-- name: "Extract Fabric Quickstart Files"
-  unarchive:
-    src: "{{ validation_folder }}/{{ validation_file | basename}}"
-    dest: "{{ validation_folder }}"
+- name: "Make gotools"
+  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/gotools; make"
+  environment:
+         GOPATH: "{{gopath}}"
+         GOROOT: "{{goroot}}"
 
-
+- name: "Run unit tests"
+  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/unit-test; bash run.sh"

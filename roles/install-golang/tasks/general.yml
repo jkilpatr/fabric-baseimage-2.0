@@ -16,10 +16,10 @@
 - name: Extract GO
   unarchive:
     src: "{{ goroot }}/{{ golink  | basename }}"
-    dest: "{{ goroot }}"
+    dest: "{{ goroot }}/../"
 
 - name: Build GO
-  shell: "cd {{goroot}}/go/src; ./make.bash"
+  shell: "cd {{goroot}}/src; ./make.bash"
   environment:
     GOROOT: "{{ goroot }}"
     GOPATH: "{{ gopath }}"

@@ -9,3 +9,4 @@
    - install-java
    - install-protobuf
    - install-node
+   - validate

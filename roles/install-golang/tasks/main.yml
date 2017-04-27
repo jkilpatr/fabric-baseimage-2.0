@@ -2,8 +2,8 @@
 
 - name: Run architecture specific build
   include: "{{ ansible_distribution }}-{{ ansilbe_architecture }}.yml"
-  when: "{{ arch_dep_golang }}"
+  when: arch_dep_golang
 
 - name: Run general build
   include: general.yml
-  when: "not {{ arch_dep_golang }}"
+  when: not arch_dep_golang

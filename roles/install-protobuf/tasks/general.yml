@@ -14,9 +14,9 @@
   shell: "cd {{ ansible_env.HOME }}/protobuf-{{ protobuf_version }} && \
           ./autogen.sh && \
           ./configure --prefix=/usr && \
-          make && \
-          make check &&
-          make install &&
+          make -j{{ansible_processor_count}} && \
+          make -j{{ansible_processor_count}} check &&
+          make -j{{ansible_processor_count}} install &&
           export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH"
 
 

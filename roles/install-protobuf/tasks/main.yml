@@ -2,8 +2,8 @@
 
 - name: Run architecture specific build
   include: "{{ ansible_distribution }}-{{ ansible_architecture }}.yml"
-  when: "{{ arch_dep_protobuf }}"
+  when: arch_dep_protobuf
 
 - name: Run general build
   include: general.yml
-  when: "not {{ arch_dep_protobuf }}"
+  when: not arch_dep_protobuf
