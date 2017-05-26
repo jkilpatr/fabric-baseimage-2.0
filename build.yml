@@ -7,6 +7,5 @@
    - install-deps
    - install-golang
    - install-java
-   - install-protobuf
    - install-node
    - validate

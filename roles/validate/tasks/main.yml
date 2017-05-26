@@ -21,10 +21,10 @@
          GOROOT: "{{goroot}}"
 
 - name: "Make gotools"
-  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/gotools; make"
+  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/gotools; make install"
   environment:
          GOPATH: "{{gopath}}"
          GOROOT: "{{goroot}}"
 
-- name: "Run unit tests"
-  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/unit-test; bash run.sh"
+#- name: "Run unit tests"
+#  shell: "cd {{gopath}}/src/github.com/hyperledger/fabric/unit-test; bash run.sh"

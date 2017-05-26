@@ -25,5 +25,9 @@
     GOPATH: "{{ gopath }}"
     GOROOT_BOOTSTRAP: "{{ go_bootstrap }}"
 
-
+- name: Add new GO to path
+  lineinfile:
+    state: present
+    line: 'export PATH="/opt/go/bin:$PATH"'
+    dest: "{{ ansible_env.HOME }}/.bashrc"
 
